@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../models/category';
-import { ListResponseModel } from '../models/ListReponseModel';
+import { ListResponseModel } from '../models/listReponseModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  apiUrl = "https://localhost:44343/api/categories/getall";
+  apiUrl = "https://localhost:44343/api/category/getall";
 
   constructor(private httpClient:HttpClient) { }
 
