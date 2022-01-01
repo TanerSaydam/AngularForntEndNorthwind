@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { pipe } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -15,10 +17,16 @@ export class ProductAddComponent implements OnInit {
   constructor(
     private formBuilder:FormBuilder,
     private productService:ProductService,
-    private toastrService:ToastrService) { }
+    private toastrService:ToastrService,
+    private router:Router,
+    ) { }
 
   ngOnInit(): void {
-    this.createProductAddForm();
+    let expiration = localStorage.getItem("expiration")
+    console.log(expiration)
+
+     this.createProductAddForm();
+
   }
 
   createProductAddForm(){
@@ -34,10 +42,11 @@ export class ProductAddComponent implements OnInit {
     if(this.productAddForm.valid){
       let productModel = Object.assign({}, this.productAddForm.value)
       this.productService.add(productModel).subscribe(response=>{
+        this.createProductAddForm()
+        //this.router.navigate(["products/add"])
         this.toastrService.success(response.message)
       },
       e=>{
-        console.log(e.error.Errors.length)
         if(e.error.Errors.length>0)
         for (let i = 0; i < e.error.Errors.length; i++) {
           this.toastrService.error(e.error.Errors[i].ErrorMessage)
