@@ -18,6 +18,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { CategoryComponent } from './components/category/category.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

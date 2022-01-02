@@ -22,11 +22,7 @@ export class ProductAddComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    let expiration = localStorage.getItem("expiration")
-    console.log(expiration)
-
      this.createProductAddForm();
-
   }
 
   createProductAddForm(){

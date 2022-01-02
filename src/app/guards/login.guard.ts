@@ -12,11 +12,15 @@ export class LoginGuard implements CanActivate, CanActivateChild, CanDeactivate<
   constructor(
     private authService:AuthService,
     private toastrService:ToastrService,
-    private router:Router  ){}
+    private router:Router ){}
+
+
+
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
 
       if(this.authService.isAuthenticated()){
         return true;
